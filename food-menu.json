@@ -1,0 +1,64 @@
+{
+    "foodItems": [
+      {
+        "image": "./assets/images/food-menu-1.png",
+        "alt": "Fried Chicken Unlimited",
+        "discount": "-15%",
+        "category": "Chicken",
+        "rating": 5,
+        "title": "Fried Chicken Unlimited",
+        "price": 49.00,
+        "originalPrice": 69.00
+      },
+      {
+        "image": "./assets/images/food-menu-2.png",
+        "alt": "Burger King Whopper",
+        "discount": "-10%",
+        "category": "Noddles",
+        "rating": 5,
+        "title": "Burger King Whopper",
+        "price": 29.00,
+        "originalPrice": 39.00
+      },
+      {
+        "image": "./assets/images/food-menu-3.png",
+        "alt": "White Castle Pizzas",
+        "discount": "-25%",
+        "category": "Pizzas",
+        "rating": 5,
+        "title": "White Castle Pizzas",
+        "price": 49.00,
+        "originalPrice": 69.00
+      },
+      {
+        "image": "./assets/images/food-menu-4.png",
+        "alt": "Bell Burrito Supreme",
+        "discount": "-20%",
+        "category": "Burrito",
+        "rating": 5,
+        "title": "Bell Burrito Supreme",
+        "price": 59.00,
+        "originalPrice": 69.00
+      },
+      {
+        "image": "./assets/images/food-menu-5.png",
+        "alt": "Kung Pao Chicken BBQ",
+        "discount": "-5%",
+        "category": "Nuggets",
+        "rating": 5,
+        "title": "Kung Pao Chicken BBQ",
+        "price": 49.00,
+        "originalPrice": 69.00
+      },
+      {
+        "image": "./assets/images/food-menu-6.png",
+        "alt": "Wendy's Chicken",
+        "discount": "-15%",
+        "category": "Chicken",
+        "rating": 5,
+        "title": "Wendy's Chicken",
+        "price": 49.00,
+        "originalPrice": 69.00
+      }
+    ]
+  }
