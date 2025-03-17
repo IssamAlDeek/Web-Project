@@ -1,5 +1,5 @@
 // Sample Data
-let foodItems = [
+const foodItems = [
     { id: 1, name: "Fried Chicken Unlimited", category: "chicken", price: 49.00, discount: 15, image: "./assets/images/food-menu-1.png", rating: 4.5 },
     { id: 2, name: "Burger King Whopper", category: "burger", price: 29.00, discount: 10, image: "./assets/images/food-menu-2.png", rating: 4.0 },
     { id: 3, name: "White Castle Pizzas", category: "pizza", price: 49.00, discount: 25, image: "./assets/images/food-menu-3.png", rating: 4.7 },
@@ -13,20 +13,20 @@ let cart = [];
 let total = 0;
 
 // DOM Elements
-let foodMenuList = document.getElementById("food-menu-list");
-let cartItems = document.getElementById("cart-items");
-let cartTotal = document.getElementById("cart-total");
-let cartCount = document.getElementById("cart-count");
-let cartModal = document.getElementById("cart-modal");
-let closeModal = document.querySelector(".close");
-let viewCartBtn = document.getElementById("view-cart-btn");
+const foodMenuList = document.getElementById("food-menu-list");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const cartCount = document.getElementById("cart-count");
+const cartModal = document.getElementById("cart-modal");
+const closeModal = document.querySelector(".close");
+const viewCartBtn = document.getElementById("view-cart-btn");
 
 // Render Food Items
 function renderFoodItems(category = "all") {
     foodMenuList.innerHTML = "";
-    let filteredItems = category === "all" ? foodItems : foodItems.filter(item => item.category === category);
+    const filteredItems = category === "all" ? foodItems : foodItems.filter(item => item.category === category);
     filteredItems.forEach(item => {
-        let foodItem = document.createElement("li");
+        const foodItem = document.createElement("li");
         foodItem.innerHTML = `
             <div class="food-menu-card">
                 <div class="card-banner">
@@ -80,7 +80,7 @@ document.addEventListener("click", (e) => {
 });
 
 function addToCart(item) {
-    let existingItem = cart.find(cartItem => cartItem.id === item.id);
+    const existingItem = cart.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
         existingItem.quantity += 1;
     } else {

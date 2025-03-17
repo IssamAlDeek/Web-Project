@@ -537,164 +537,164 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-    let cart = [];
-    let cartCount = document.getElementById("cart-count");
-    let foodItems = document.querySelectorAll(".food-menu-card");
-    let filterButtons = document.querySelectorAll(".filter-btn");
-    let cartContainer = document.createElement("div");
-    let cartOverlay = document.createElement("div");
+  const cart = [];
+  const cartCount = document.getElementById("cart-count");
+  const foodItems = document.querySelectorAll(".food-menu-card");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const cartContainer = document.createElement("div");
+  const cartOverlay = document.createElement("div");
+
+  cartContainer.classList.add("cart-container");
+  cartOverlay.classList.add("cart-overlay");
   
-    cartContainer.classList.add("cart-container");
-    cartOverlay.classList.add("cart-overlay");
-    
-    cartContainer.innerHTML = `
-      <div class="cart-box">
-        <div class="cart-header">
-          <h3>Your Cart</h3>
-          <button class="close-cart">&times;</button>
-        </div>
-        <ul class="cart-items"></ul>
-        <p class="cart-total">Total: $<span id="cart-total">0.00</span></p>
-        <button class="btn checkout-btn">Checkout</button>
+  cartContainer.innerHTML = `
+    <div class="cart-box">
+      <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button class="close-cart">&times;</button>
       </div>
-    `;
-    document.body.appendChild(cartOverlay);
-    document.body.appendChild(cartContainer);
-  
-    let style = document.createElement("style");
-    style.innerHTML = `
-      .cart-container {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 350px;
-        height: 100vh;
-        background: white;
-        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        z-index: 1000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-      }
-      .cart-container.active {
-        transform: translateX(0);
-      }
-      .cart-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
-        display: none;
-        z-index: 999;
-      }
-      .cart-overlay.active {
-        display: block;
-      }
-      .cart-box {
-        padding: 20px;
-        flex-grow: 1;
-      }
-      .cart-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-      }
-      .cart-items {
-        list-style: none;
-        padding: 0;
-        max-height: 400px;
-        overflow-y: auto;
-      }
-      .cart-items li {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-      }
-      .checkout-btn {
-        width: 100%;
-        background: #ff6347;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-      }
-      .close-cart {
-        background: none;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-      }
-    `;
-    document.head.appendChild(style);
-  
-    function updateCart() {
-      let cartItemsContainer = document.querySelector(".cart-items");
-      let cartTotal = document.getElementById("cart-total");
-      cartItemsContainer.innerHTML = "";
-      let total = 0;
-  
-      cart.forEach((item, index) => {
-        total += item.price;
-        let li = document.createElement("li");
-        li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-item" data-index="${index}">Remove</button>`;
-        cartItemsContainer.appendChild(li);
-      });
-  
-      cartTotal.textContent = total.toFixed(2);
-      cartCount.textContent = cart.length;
+      <ul class="cart-items"></ul>
+      <p class="cart-total">Total: $<span id="cart-total">0.00</span></p>
+      <button class="btn checkout-btn">Checkout</button>
+    </div>
+  `;
+  document.body.appendChild(cartOverlay);
+  document.body.appendChild(cartContainer);
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .cart-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
     }
-  
-    function addToCart(name, price) {
-      cart.push({ name, price });
+    .cart-container.active {
+      transform: translateX(0);
+    }
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
+    .cart-overlay.active {
+      display: block;
+    }
+    .cart-box {
+      padding: 20px;
+      flex-grow: 1;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-items {
+      list-style: none;
+      padding: 0;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .cart-items li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .checkout-btn {
+      width: 100%;
+      background: #ff6347;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  `;
+  document.head.appendChild(style);
+
+  function updateCart() {
+    const cartItemsContainer = document.querySelector(".cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+      const li = document.createElement("li");
+      li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-item" data-index="${index}">Remove</button>`;
+      cartItemsContainer.appendChild(li);
+    });
+
+    cartTotal.textContent = total.toFixed(2);
+    cartCount.textContent = cart.length;
+  }
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+  }
+
+  document.querySelectorAll(".food-menu-btn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const card = button.closest(".food-menu-card");
+      const name = card.querySelector(".card-title").textContent;
+      const price = parseFloat(card.querySelector(".price").textContent.replace("$", ""));
+      addToCart(name, price);
+    });
+  });
+
+  cartContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-item")) {
+      const index = event.target.getAttribute("data-index");
+      cart.splice(index, 1);
       updateCart();
     }
-  
-    document.querySelectorAll(".food-menu-btn").forEach((button) => {
-      button.addEventListener("click", function () {
-        let card = button.closest(".food-menu-card");
-        let name = card.querySelector(".card-title").textContent;
-        let price = parseFloat(card.querySelector(".price").textContent.replace("$", ""));
-        addToCart(name, price);
-      });
-    });
-  
-    cartContainer.addEventListener("click", function (event) {
-      if (event.target.classList.contains("remove-item")) {
-        const index = event.target.getAttribute("data-index");
-        cart.splice(index, 1);
-        updateCart();
-      }
-    });
-  
-    document.querySelector(".close-cart").addEventListener("click", function () {
-      cartContainer.classList.remove("active");
-      cartOverlay.classList.remove("active");
-    });
-  
-    document.querySelector(".btn-hover").addEventListener("click", function () {
-      cartContainer.classList.add("active");
-      cartOverlay.classList.add("active");
-    });
-  
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        let category = button.textContent.toLowerCase();
-        filterButtons.forEach((btn) => btn.classList.remove("active"));
-        button.classList.add("active");
-        
-        foodItems.forEach((item) => {
-          let itemCategory = item.querySelector(".category").textContent.toLowerCase();
-          item.style.display = category === "all" || itemCategory.includes(category) ? "block" : "none";
-        });
+  });
+
+  document.querySelector(".close-cart").addEventListener("click", function () {
+    cartContainer.classList.remove("active");
+    cartOverlay.classList.remove("active");
+  });
+
+  document.querySelector(".btn-hover").addEventListener("click", function () {
+    cartContainer.classList.add("active");
+    cartOverlay.classList.add("active");
+  });
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const category = button.textContent.toLowerCase();
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+      
+      foodItems.forEach((item) => {
+        const itemCategory = item.querySelector(".category").textContent.toLowerCase();
+        item.style.display = category === "all" || itemCategory.includes(category) ? "block" : "none";
       });
     });
   });
+});
   </script>
 </body>
 
