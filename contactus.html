@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
+  <title>Contact US</title>
 
  
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
@@ -50,15 +50,21 @@
       <section class="contact section">
         <div class="container">
           <h2 class="section-title">Contact <span class="span">Us</span></h2>
+          <!-- Go to Home Button with Icon -->
+          <a href="index.html" class="go-home-btn" aria-label="Go to Home" data-go-home-btn>
+            <ion-icon name="home-outline"></ion-icon> Go to Home
+          </a>
+
           <form class="contact-form" id="contactForm">
             <div class="input-wrapper">
-              <input type="text" class="input-field" name="name" placeholder="Your Name" required>
-              <input type="email" class="input-field" name="email" placeholder="Your Email" required>
+              <input type="text" class="input-field" id="name" name="name" placeholder="Your Name">
+              <input type="email" class="input-field" id="email" name="email" placeholder="Your Email">
             </div>
-            <input type="text" class="input-field" name="subject" placeholder="Subject" required>
-            <textarea class="input-field" name="message" placeholder="Your Message" required></textarea>
+            <input type="text" class="input-field" id="subject" name="subject" placeholder="Subject">
+            <textarea class="input-field" id="message" name="message" placeholder="Your Message"></textarea>
             <button type="submit" class="btn btn-hover">Send Message</button>
           </form>
+          
         </div>
       </section>
     
