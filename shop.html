@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
+  <title>Shop</title>
 
  
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
@@ -57,15 +57,15 @@
           </li>
 
           <li class="nav-item">
-            <a href="#food-menu" class="navbar-link" data-nav-link>Shop</a>
+            <a href="shop.html" class="navbar-link" data-nav-link>Shop</a>
           </li>
 
           <li class="nav-item">
-            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+            <a href="blog.html" class="navbar-link" data-nav-link>Blog</a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="navbar-link" data-nav-link>Contact Us</a>
+            <a href="contactus.html" class="navbar-link" data-nav-link>Contact Us</a>
           </li>
 
         </ul>
@@ -539,11 +539,12 @@
     document.addEventListener("DOMContentLoaded", function () {
   const cart = [];
   const cartCount = document.getElementById("cart-count");
-  const foodItems = document.querySelectorAll(".food-menu-card");
+  const foodMenuCards = document.querySelectorAll(".food-menu-list > li");
   const filterButtons = document.querySelectorAll(".filter-btn");
   const cartContainer = document.createElement("div");
   const cartOverlay = document.createElement("div");
 
+  // Create cart elements
   cartContainer.classList.add("cart-container");
   cartOverlay.classList.add("cart-overlay");
   
@@ -561,6 +562,7 @@
   document.body.appendChild(cartOverlay);
   document.body.appendChild(cartContainer);
 
+  // Add styles for cart
   const style = document.createElement("style");
   style.innerHTML = `
     .cart-container {
@@ -630,9 +632,18 @@
       font-size: 18px;
       cursor: pointer;
     }
+    .remove-item {
+      background: #ff6347;
+      color: white;
+      border: none;
+      padding: 2px 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
   `;
   document.head.appendChild(style);
 
+  // Update cart display
   function updateCart() {
     const cartItemsContainer = document.querySelector(".cart-items");
     const cartTotal = document.getElementById("cart-total");
@@ -642,7 +653,10 @@
     cart.forEach((item, index) => {
       total += item.price;
       const li = document.createElement("li");
-      li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class="remove-item" data-index="${index}">Remove</button>`;
+      li.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)}</span>
+        <button class="remove-item" data-index="${index}">Remove</button>
+      `;
       cartItemsContainer.appendChild(li);
     });
 
@@ -650,11 +664,21 @@
     cartCount.textContent = cart.length;
   }
 
+  // Add item to cart
   function addToCart(name, price) {
     cart.push({ name, price });
     updateCart();
+    
+    // Show cart briefly when adding items
+    cartContainer.classList.add("active");
+    cartOverlay.classList.add("active");
+    setTimeout(() => {
+      cartContainer.classList.remove("active");
+      cartOverlay.classList.remove("active");
+    }, 1500);
   }
 
+  // Add event listeners for "Order Now" buttons
   document.querySelectorAll(".food-menu-btn").forEach((button) => {
     button.addEventListener("click", function () {
       const card = button.closest(".food-menu-card");
@@ -664,6 +688,7 @@
     });
   });
 
+  // Handle remove item from cart
   cartContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("remove-item")) {
       const index = event.target.getAttribute("data-index");
@@ -672,28 +697,48 @@
     }
   });
 
+  // Close cart
   document.querySelector(".close-cart").addEventListener("click", function () {
     cartContainer.classList.remove("active");
     cartOverlay.classList.remove("active");
   });
 
-  document.querySelector(".btn-hover").addEventListener("click", function () {
+  // Open cart (make sure you have an element with class "btn-hover" in your HTML)
+  document.querySelector(".btn-hover")?.addEventListener("click", function () {
     cartContainer.classList.add("active");
     cartOverlay.classList.add("active");
   });
 
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const category = button.textContent.toLowerCase();
-      filterButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
+  // Filter functionality
+ // Updated filter functionality
+filterButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const filterValue = button.textContent.trim().toLowerCase();
+    
+    // Update active button
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    
+    // Filter items
+    foodMenuCards.forEach((card) => {
+      const itemTitle = card.querySelector(".card-title").textContent.toLowerCase();
+      const itemCategory = card.querySelector(".category").textContent.trim().toLowerCase();
       
-      foodItems.forEach((item) => {
-        const itemCategory = item.querySelector(".category").textContent.toLowerCase();
-        item.style.display = category === "all" || itemCategory.includes(category) ? "block" : "none";
-      });
+      // Special case for Burger King Whopper
+      const isBurger = filterValue === "burger" && 
+                      (itemTitle.includes("burger") || itemTitle.includes("whopper"));
+      
+      if (filterValue === "all" || itemCategory.includes(filterValue) || isBurger) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
     });
   });
+});
+
+  // Initialize with "All" filter active
+  document.querySelector(".filter-btn.active")?.click();
 });
   </script>
 </body>
