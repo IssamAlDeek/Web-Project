@@ -1,5 +1,5 @@
 // Sample Data
-const foodItems = [
+let foodItems = [
     { id: 1, name: "Fried Chicken Unlimited", category: "chicken", price: 49.00, discount: 15, image: "./assets/images/food-menu-1.png", rating: 4.5 },
     { id: 2, name: "Burger King Whopper", category: "burger", price: 29.00, discount: 10, image: "./assets/images/food-menu-2.png", rating: 4.0 },
     { id: 3, name: "White Castle Pizzas", category: "pizza", price: 49.00, discount: 25, image: "./assets/images/food-menu-3.png", rating: 4.7 },
@@ -13,20 +13,20 @@ let cart = [];
 let total = 0;
 
 // DOM Elements
-const foodMenuList = document.getElementById("food-menu-list");
-const cartItems = document.getElementById("cart-items");
-const cartTotal = document.getElementById("cart-total");
-const cartCount = document.getElementById("cart-count");
-const cartModal = document.getElementById("cart-modal");
-const closeModal = document.querySelector(".close");
-const viewCartBtn = document.getElementById("view-cart-btn");
+let foodMenuList = document.getElementById("food-menu-list");
+let cartItems = document.getElementById("cart-items");
+let cartTotal = document.getElementById("cart-total");
+let cartCount = document.getElementById("cart-count");
+let cartModal = document.getElementById("cart-modal");
+let closeModal = document.querySelector(".close");
+let viewCartBtn = document.getElementById("view-cart-btn");
 
 // Render Food Items
 function renderFoodItems(category = "all") {
     foodMenuList.innerHTML = "";
-    const filteredItems = category === "all" ? foodItems : foodItems.filter(item => item.category === category);
+    let filteredItems = category === "all" ? foodItems : foodItems.filter(item => item.category === category);
     filteredItems.forEach(item => {
-        const foodItem = document.createElement("li");
+        let foodItem = document.createElement("li");
         foodItem.innerHTML = `
             <div class="food-menu-card">
                 <div class="card-banner">
@@ -73,14 +73,14 @@ document.querySelectorAll(".filter-btn").forEach(button => {
 // Add to Cart
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("food-menu-btn")) {
-        const itemId = parseInt(e.target.dataset.id);
-        const item = foodItems.find(item => item.id === itemId);
+        let itemId = parseInt(e.target.dataset.id);
+        let item = foodItems.find(item => item.id === itemId);
         addToCart(item);
     }
 });
 
 function addToCart(item) {
-    const existingItem = cart.find(cartItem => cartItem.id === item.id);
+    let existingItem = cart.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -94,7 +94,7 @@ function updateCart() {
     cartItems.innerHTML = "";
     total = 0;
     cart.forEach(item => {
-        const cartItem = document.createElement("li");
+        let cartItem = document.createElement("li");
         cartItem.innerHTML = `
             ${item.name} - $${item.price.toFixed(2)} x ${item.quantity}
             <button class="btn btn-hover" data-id="${item.id}">Remove</button>

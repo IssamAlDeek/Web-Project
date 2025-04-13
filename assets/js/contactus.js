@@ -1,10 +1,10 @@
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const subject = document.getElementById('subject').value.trim();
-  const message = document.getElementById('message').value.trim();
+  let name = document.getElementById('name').value.trim();
+  let email = document.getElementById('email').value.trim();
+  let subject = document.getElementById('subject').value.trim();
+  let message = document.getElementById('message').value.trim();
 
   if (!name || !email || !subject || !message) {
     alert('Please fill out all fields.');
@@ -21,6 +21,6 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 });
 
 function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 }

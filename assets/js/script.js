@@ -6,9 +6,9 @@
  * navbar toggle
  */
 
-const navbar = document.querySelector("[data-navbar]");
-const navbarLinks = document.querySelectorAll("[data-nav-link]");
-const menuToggleBtn = document.querySelector("[data-menu-toggle-btn]");
+let navbar = document.querySelector("[data-navbar]");
+let navbarLinks = document.querySelectorAll("[data-nav-link]");
+let menuToggleBtn = document.querySelector("[data-menu-toggle-btn]");
 
 menuToggleBtn.addEventListener("click", function () {
   navbar.classList.toggle("active");
@@ -28,8 +28,8 @@ for (let i = 0; i < navbarLinks.length; i++) {
  * header sticky & back to top
  */
 
-const header = document.querySelector("[data-header]");
-const backTopBtn = document.querySelector("[data-back-top-btn]");
+let header = document.querySelector("[data-header]");
+let backTopBtn = document.querySelector("[data-back-top-btn]");
 
 window.addEventListener("scroll", function () {
   if (window.scrollY >= 100) {
@@ -47,12 +47,12 @@ window.addEventListener("scroll", function () {
  * search box toggle
  */
 
-const searchBtn = document.querySelector("[data-search-btn]");
-const searchContainer = document.querySelector("[data-search-container]");
-const searchSubmitBtn = document.querySelector("[data-search-submit-btn]");
-const searchCloseBtn = document.querySelector("[data-search-close-btn]");
+let searchBtn = document.querySelector("[data-search-btn]");
+let searchContainer = document.querySelector("[data-search-container]");
+let searchSubmitBtn = document.querySelector("[data-search-submit-btn]");
+let searchCloseBtn = document.querySelector("[data-search-close-btn]");
 
-const searchBoxElems = [searchBtn, searchSubmitBtn, searchCloseBtn];
+let searchBoxElems = [searchBtn, searchSubmitBtn, searchCloseBtn];
 
 for (let i = 0; i < searchBoxElems.length; i++) {
   searchBoxElems[i].addEventListener("click", function () {
@@ -67,7 +67,7 @@ for (let i = 0; i < searchBoxElems.length; i++) {
  * move cycle on scroll
  */
 
-const deliveryBoy = document.querySelector("[data-delivery-boy]");
+let deliveryBoy = document.querySelector("[data-delivery-boy]");
 
 let deliveryBoyMove = -80;
 let lastScrollPos = 0;
@@ -90,15 +90,15 @@ window.addEventListener("scroll", function () {
   }
 
 });
-const itemsPerPage = 3; // Number of items to display per page
+let itemsPerPage = 3; // Number of items to display per page
 let currentPage = 1; // Current page for pagination
 let allFoodItems = []; // Store all food items fetched from JSON
 
 // Fetch data from food-menu.json
 async function fetchFoodItems() {
   try {
-    const response = await fetch('./food-menu.json'); // Path to your JSON file
-    const data = await response.json();
+    let response = await fetch('./food-menu.json'); // Path to your JSON file
+    let data = await response.json();
     allFoodItems = data.foodItems; // Store the fetched items
     renderFoodItems(paginateItems(allFoodItems, currentPage)); // Initial render
     updatePagination(allFoodItems); // Initialize pagination
@@ -109,11 +109,11 @@ async function fetchFoodItems() {
 
 // Render food items
 function renderFoodItems(items) {
-  const foodMenuList = document.querySelector('.food-menu-list');
+  let foodMenuList = document.querySelector('.food-menu-list');
   foodMenuList.innerHTML = ''; // Clear existing items
 
   items.forEach(item => {
-    const foodItem = document.createElement('li');
+    let foodItem = document.createElement('li');
     foodItem.innerHTML = `
       <div class="food-menu-card">
         <div class="card-banner">
@@ -141,20 +141,20 @@ function renderFoodItems(items) {
 
 // Paginate items
 function paginateItems(items, page) {
-  const start = (page - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
+  let start = (page - 1) * itemsPerPage;
+  let end = start + itemsPerPage;
   return items.slice(start, end);
 }
 
 // Update pagination buttons
 function updatePagination(items) {
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-  const paginationContainer = document.querySelector('.pagination') || document.createElement('div');
+  let totalPages = Math.ceil(items.length / itemsPerPage);
+  let paginationContainer = document.querySelector('.pagination') || document.createElement('div');
   paginationContainer.className = 'pagination';
   paginationContainer.innerHTML = ''; // Clear existing buttons
 
   for (let i = 1; i <= totalPages; i++) {
-    const pageButton = document.createElement('button');
+    let pageButton = document.createElement('button');
     pageButton.innerText = i;
     pageButton.addEventListener('click', () => {
       currentPage = i;
@@ -163,7 +163,7 @@ function updatePagination(items) {
     paginationContainer.appendChild(pageButton);
   }
 
-  const foodMenuSection = document.querySelector('.food-menu');
+  let foodMenuSection = document.querySelector('.food-menu');
   if (!document.querySelector('.pagination')) {
     foodMenuSection.appendChild(paginationContainer);
   }
@@ -171,7 +171,7 @@ function updatePagination(items) {
 
 // Filter items by category
 function filterByCategory(category) {
-  const filteredItems = category === 'All' 
+  let filteredItems = category === 'All' 
     ? allFoodItems 
     : allFoodItems.filter(item => item.category === category);
   currentPage = 1;
