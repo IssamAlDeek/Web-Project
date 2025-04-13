@@ -22,6 +22,7 @@ body {
   color: var(--rich-black-fogra-29);
   margin: 0;
   padding: 0;
+  
 }
 
 .section {
@@ -101,4 +102,35 @@ textarea.input-field {
   textarea.input-field {
     grid-column: span 1;
   }
+}
+/* Go to Home Button Style */
+.go-home-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--deep-saffron);
+  color: var(--white);
+  padding: 12px 20px;
+  font-size: var(--fs-4);
+  font-weight: var(--fw-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-1);
+  text-decoration: none;
+}
+
+.go-home-btn ion-icon {
+  margin-right: 8px;
+  font-size: 1.4rem;
+}
+
+.go-home-btn:hover {
+  background-color: var(--rich-black-fogra-29);
+}
+
+.go-home-btn:active {
+  background-color: var(--spanish-gray);
 }
